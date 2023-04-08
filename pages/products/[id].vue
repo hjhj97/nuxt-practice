@@ -1,9 +1,8 @@
 <template>
   <div>
-    <h2>Product Id : {{ $route.params.id }}</h2>
+    <h2>{{ product.title }}</h2>
     <p>
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus facere tenetur enim, beatae optio nihil ducimus
-      eligendi magni eum iste nesciunt maxime voluptatum dolor nam.
+      {{ product.description }}
     </p>
   </div>
 </template>
@@ -14,7 +13,16 @@ export default {
     definePageMeta({
       layout: "products",
     });
-    return {};
+    const route = useRoute();
+    const product = ref({});
+
+    onMounted(async () => {
+      const { data } = await useFetch(`https://fakestoreapi.com/products/${route.params.id}`);
+      product.value = data.value;
+    });
+    return {
+      product,
+    };
   },
 };
 </script>
