@@ -14,6 +14,9 @@ export default {
     onMounted(async () => {
       const { data } = await useFetch(`https://fakestoreapi.com/products/${route.params.id}`);
       product.value = data.value;
+      if (!product.value) {
+        throw createError({ statusCode: 404, statusMessage: "Product Not Found", fatal: true });
+      }
     });
     return {
       product,
