@@ -1,4 +1,8 @@
 <template>
+  <Head>
+    <Title>Nuxt Practice | {{ product.title }}</Title>
+    <Meta name="description" :content="product.description" />
+  </Head>
   <ProductDetail v-bind="{ product }" />
 </template>
 

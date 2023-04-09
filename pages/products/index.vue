@@ -14,6 +14,11 @@ export default {
     definePageMeta({
       layout: "products",
     });
+
+    useHead({
+      title: "Nuxt Practice",
+      meta: [{ name: "description", content: "Nuxt 3 Merch" }],
+    });
     const products = ref([]);
 
     onMounted(async () => {
